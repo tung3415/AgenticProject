@@ -7,3 +7,4 @@ class ChatbotNode:
 
     def chatbot_node(self, state: State) -> State:
         return {"messages": [self.llm.invoke(state["messages"])]}
+    

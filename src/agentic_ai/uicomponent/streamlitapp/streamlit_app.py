@@ -1,6 +1,6 @@
 import streamlit as st 
 from src.agentic_ai.uicomponent.uiconfig import Config
-
+import os 
 class StreamlitApp:
     def __init__(self):
         self.config=Config()
@@ -33,6 +33,9 @@ class StreamlitApp:
             # Get usecase 
             usecase_options = self.config.get_usecase_options()
             self.user_setup["usecase"]=st.selectbox("Select Use Case:", usecase_options)   
+
+            if self.user_setup["usecase"]=="Agentic Tool":
+                os.environ["TAVILY_API_KEY"]=self.user_setup["TAVILY_API_KEY"]=st.session_state["TAVILY_API_KEY"]=st.text_input("TAVILY_KEY", type="password")
 
     def get_user_setup(self):
         return self.user_setup

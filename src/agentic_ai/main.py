@@ -8,7 +8,6 @@ from src.agentic_ai.uicomponent.streamlitapp.display_result import DisplayResult
 # UI and user_input
 def langgraph_agentic_app():
     """
-    Frontend and Backend
     Loads and runs the LangGraph AgenticAI application with Streamlit UI.
     This function initializes the UI, handles user input, configures the LLM model,
     sets up the graph based on the selected use case, and displays the output while 
@@ -18,15 +17,15 @@ def langgraph_agentic_app():
     ui.load_streamlit()
     user_setup = ui.get_user_setup()
     usecase = user_setup["usecase"]
+    
     user_message = st.text_input("Enter your message: ")
     if user_message:
-        # LLM
+         # LLM
         llm_config = LLMChatModel(user_setup)
         llm = llm_config.get_llm()
         # Graph
         graphbuilder = GraphBuilder(llm)
         graph = graphbuilder.setup_graph(usecase)
-        
         DisplayResultStreamlit(usecase,graph,user_message).display_result_on_ui()
 
 
